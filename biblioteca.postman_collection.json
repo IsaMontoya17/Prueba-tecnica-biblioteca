@@ -1,0 +1,1057 @@
+{
+  "info": {
+    "_postman_id": "aa8da5a7-59be-4706-a03c-2821f911462d",
+    "name": "biblioteca",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "33831604"
+  },
+  "item": [
+    {
+      "name": "Libros",
+      "item": [
+        {
+          "name": "Obtener todos los libros",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code es 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Retorna lista paginada de libros\", function () {\r\n    const json = pm.response.json();\r\n    pm.expect(json.success).to.be.true;\r\n    pm.expect(json.data).to.be.an(\"array\");\r\n    pm.expect(json.meta).to.have.property(\"total\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/libros",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "libros"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Obtener todos los libros",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/libros",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "libros"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "host",
+                  "value": "127.0.0.1:8000"
+                },
+                {
+                  "key": "connection",
+                  "value": "close"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "PHP/8.3.33"
+                },
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "date",
+                  "value": "Thu, 15 Oct 2026 16:03:34 GMT"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Listado de libros\",\n  \"data\": [\n    {\n      \"id\": 1,\n      \"titulo\": \"Eos assumenda tempora distinctio\",\n      \"isbn\": \"9787447762746\",\n      \"anio_publicacion\": 2020,\n      \"numero_paginas\": 440,\n      \"descripcion\": \"Corrupti soluta quia modi dicta fugit dignissimos dolorem. Est et delectus sed aut nihil voluptatem nesciunt. Dignissimos quod sequi ducimus magnam voluptatem commodi.\",\n      \"stock_disponible\": 3,\n      \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"updated_at\": \"2026-10-15T15:53:48.000000Z\",\n      \"deleted_at\": null,\n      \"autores\": [\n        {\n          \"id\": 7,\n          \"nombre\": \"Rozella\",\n          \"apellido\": \"Conroy\",\n          \"fecha_nacimiento\": \"1937-09-06T00:00:00.000000Z\",\n          \"nacionalidad\": \"Chile\",\n          \"biografia\": \"Dolorum magnam delectus tenetur consequatur dolor quibusdam. Et et neque aliquam. Sunt voluptatum consequatur aut. Et sapiente doloribus voluptatem ut non a distinctio.\",\n          \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"pivot\": {\n            \"libro_id\": 1,\n            \"autor_id\": 7,\n            \"orden_autor\": 1,\n            \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n            \"updated_at\": \"2026-10-15T14:41:24.000000Z\"\n          }\n        }\n      ]\n    },\n    {\n      \"id\": 2,\n      \"titulo\": \"Vel sed et maiores\",\n      \"isbn\": \"9796335074342\",\n      \"anio_publicacion\": 1984,\n      \"numero_paginas\": 780,\n      \"descripcion\": \"Officia eaque ab tempore est officia. Et est molestiae voluptatem id id nostrum quasi non. Temporibus enim qui rerum inventore.\",\n      \"stock_disponible\": 6,\n      \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"deleted_at\": null,\n      \"autores\": [\n        {\n          \"id\": 9,\n          \"nombre\": \"Anastacio\",\n          \"apellido\": \"Kunze\",\n          \"fecha_nacimiento\": \"1954-01-05T00:00:00.000000Z\",\n          \"nacionalidad\": \"Bouvet Island (Bouvetoya)\",\n          \"biografia\": \"Cum et esse reprehenderit. Nam reprehenderit laudantium quisquam ducimus nisi velit non. Id qui in dolores dolores ex doloribus ea.\",\n          \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"pivot\": {\n            \"libro_id\": 2,\n            \"autor_id\": 9,\n            \"orden_autor\": 1,\n            \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n            \"updated_at\": \"2026-10-15T14:41:24.000000Z\"\n          }\n        }\n      ]\n    },\n    {\n      \"id\": 3,\n      \"titulo\": \"Ducimus aut quod consectetur\",\n      \"isbn\": \"9792981913769\",\n      \"anio_publicacion\": 1961,\n      \"numero_paginas\": 222,\n      \"descripcion\": \"Sunt harum quia quo consequatur quas similique beatae. Incidunt aut nam maxime architecto repudiandae. Dolor qui ut qui repudiandae. Eos porro commodi doloribus iure iure fuga. Quis ea consequatur impedit.\",\n      \"stock_disponible\": 6,\n      \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"updated_at\": \"2026-10-15T15:27:11.000000Z\",\n      \"deleted_at\": null,\n      \"autores\": [\n        {\n          \"id\": 3,\n          \"nombre\": \"Ida\",\n          \"apellido\": \"Rippin\",\n          \"fecha_nacimiento\": \"1986-07-27T00:00:00.000000Z\",\n          \"nacionalidad\": \"Saint Barthelemy\",\n          \"biografia\": \"Sed doloremque reiciendis ut quis explicabo mollitia. Voluptatem natus aliquam vitae vel inventore blanditiis nobis. Facere in ipsum omnis hic dolor. Vero ipsam et ullam unde nam.\",\n          \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"pivot\": {\n            \"libro_id\": 3,\n            \"autor_id\": 3,\n            \"orden_autor\": 1,\n            \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n            \"updated_at\": \"2026-10-15T14:41:24.000000Z\"\n          }\n        }\n      ]\n    },\n    {\n      \"id\": 4,\n      \"titulo\": \"Voluptatem tempore porro voluptatem\",\n      \"isbn\": \"9795811143787\",\n      \"anio_publicacion\": 2009,\n      \"numero_paginas\": 675,\n      \"descripcion\": \"Ea at aut eos qui. Maiores consectetur natus quas quo. Dolorem quo minima consectetur maxime et saepe amet dolorem. Dolorem error inventore harum asperiores ea.\",\n      \"stock_disponible\": 5,\n      \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"deleted_at\": null,\n      \"autores\": [\n        {\n          \"id\": 4,\n          \"nombre\": \"Karson\",\n          \"apellido\": \"Ratke\",\n          \"fecha_nacimiento\": \"1944-08-09T00:00:00.000000Z\",\n          \"nacionalidad\": \"France\",\n          \"biografia\": \"Ea ut eveniet inventore. Iusto possimus nemo itaque blanditiis quae et dignissimos et.\",\n          \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"pivot\": {\n            \"libro_id\": 4,\n            \"autor_id\": 4,\n            \"orden_autor\": 1,\n            \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n            \"updated_at\": \"2026-10-15T14:41:24.000000Z\"\n          }\n        },\n        {\n          \"id\": 7,\n          \"nombre\": \"Rozella\",\n          \"apellido\": \"Conroy\",\n          \"fecha_nacimiento\": \"1937-09-06T00:00:00.000000Z\",\n          \"nacionalidad\": \"Chile\",\n          \"biografia\": \"Dolorum magnam delectus tenetur consequatur dolor quibusdam. Et et neque aliquam. Sunt voluptatum consequatur aut. Et sapiente doloribus voluptatem ut non a distinctio.\",\n          \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"pivot\": {\n            \"libro_id\": 4,\n            \"autor_id\": 7,\n            \"orden_autor\": 2,\n            \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n            \"updated_at\": \"2026-10-15T14:41:24.000000Z\"\n          }\n        }\n      ]\n    },\n    {\n      \"id\": 5,\n      \"titulo\": \"Aperiam voluptas delectus aperiam\",\n      \"isbn\": \"9794708294205\",\n      \"anio_publicacion\": 1984,\n      \"numero_paginas\": 665,\n      \"descripcion\": \"Autem cumque omnis perferendis iste qui. Molestiae saepe iusto assumenda quia modi aut. Eos et quia numquam in qui officia.\",\n      \"stock_disponible\": 0,\n      \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"deleted_at\": null,\n      \"autores\": [\n        {\n          \"id\": 5,\n          \"nombre\": \"Tierra\",\n          \"apellido\": \"Pollich\",\n          \"fecha_nacimiento\": \"1946-07-25T00:00:00.000000Z\",\n          \"nacionalidad\": \"Cameroon\",\n          \"biografia\": \"Neque eos qui voluptate nihil possimus. Voluptatem iure sed blanditiis. Quis officia quos quia cupiditate est cum adipisci omnis. Placeat harum ut ipsam velit eos reprehenderit.\",\n          \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"pivot\": {\n            \"libro_id\": 5,\n            \"autor_id\": 5,\n            \"orden_autor\": 1,\n            \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n            \"updated_at\": \"2026-10-15T14:41:24.000000Z\"\n          }\n        },\n        {\n          \"id\": 7,\n          \"nombre\": \"Rozella\",\n          \"apellido\": \"Conroy\",\n          \"fecha_nacimiento\": \"1937-09-06T00:00:00.000000Z\",\n          \"nacionalidad\": \"Chile\",\n          \"biografia\": \"Dolorum magnam delectus tenetur consequatur dolor quibusdam. Et et neque aliquam. Sunt voluptatum consequatur aut. Et sapiente doloribus voluptatem ut non a distinctio.\",\n          \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"pivot\": {\n            \"libro_id\": 5,\n            \"autor_id\": 7,\n            \"orden_autor\": 2,\n            \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n            \"updated_at\": \"2026-10-15T14:41:24.000000Z\"\n          }\n        }\n      ]\n    },\n    {\n      \"id\": 6,\n      \"titulo\": \"Corporis officia\",\n      \"isbn\": \"9794190645264\",\n      \"anio_publicacion\": 2009,\n      \"numero_paginas\": 643,\n      \"descripcion\": \"Molestiae rerum animi eligendi et sapiente qui. Corrupti suscipit distinctio qui laborum ab aut. Libero sint sed voluptates. Nam repudiandae temporibus eum aspernatur id. Labore dicta numquam eveniet dolor velit.\",\n      \"stock_disponible\": 1,\n      \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"deleted_at\": null,\n      \"autores\": [\n        {\n          \"id\": 7,\n          \"nombre\": \"Rozella\",\n          \"apellido\": \"Conroy\",\n          \"fecha_nacimiento\": \"1937-09-06T00:00:00.000000Z\",\n          \"nacionalidad\": \"Chile\",\n          \"biografia\": \"Dolorum magnam delectus tenetur consequatur dolor quibusdam. Et et neque aliquam. Sunt voluptatum consequatur aut. Et sapiente doloribus voluptatem ut non a distinctio.\",\n          \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"pivot\": {\n            \"libro_id\": 6,\n            \"autor_id\": 7,\n            \"orden_autor\": 1,\n            \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n            \"updated_at\": \"2026-10-15T14:41:24.000000Z\"\n          }\n        }\n      ]\n    },\n    {\n      \"id\": 7,\n      \"titulo\": \"Animi error sint\",\n      \"isbn\": \"9793301971575\",\n      \"anio_publicacion\": 2016,\n      \"numero_paginas\": 302,\n      \"descripcion\": \"Incidunt neque non eveniet perferendis quae. Veniam non cumque soluta nihil. Excepturi magnam et et qui.\",\n      \"stock_disponible\": 6,\n      \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"deleted_at\": null,\n      \"autores\": [\n        {\n          \"id\": 6,\n          \"nombre\": \"Maye\",\n          \"apellido\": \"Metz\",\n          \"fecha_nacimiento\": \"1973-07-01T00:00:00.000000Z\",\n          \"nacionalidad\": \"Libyan Arab Jamahiriya\",\n          \"biografia\": \"Perspiciatis provident fugit explicabo animi sunt id expedita. Maxime quo reiciendis autem vitae pariatur libero. Dignissimos officia velit neque quod. Ea blanditiis quia soluta quae quibusdam.\",\n          \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"pivot\": {\n            \"libro_id\": 7,\n            \"autor_id\": 6,\n            \"orden_autor\": 1,\n            \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n            \"updated_at\": \"2026-10-15T14:41:24.000000Z\"\n          }\n        }\n      ]\n    },\n    {\n      \"id\": 8,\n      \"titulo\": \"Veritatis similique facere libero\",\n      \"isbn\": \"9799955440481\",\n      \"anio_publicacion\": 1960,\n      \"numero_paginas\": 557,\n      \"descripcion\": \"Debitis illo veritatis omnis pariatur quas et nam blanditiis. Et est officia perspiciatis aut sit. Temporibus cum voluptatum dolorem necessitatibus accusamus dicta. Natus vel nobis quis quaerat eum amet impedit.\",\n      \"stock_disponible\": 5,\n      \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"deleted_at\": null,\n      \"autores\": [\n        {\n          \"id\": 5,\n          \"nombre\": \"Tierra\",\n          \"apellido\": \"Pollich\",\n          \"fecha_nacimiento\": \"1946-07-25T00:00:00.000000Z\",\n          \"nacionalidad\": \"Cameroon\",\n          \"biografia\": \"Neque eos qui voluptate nihil possimus. Voluptatem iure sed blanditiis. Quis officia quos quia cupiditate est cum adipisci omnis. Placeat harum ut ipsam velit eos reprehenderit.\",\n          \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"pivot\": {\n            \"libro_id\": 8,\n            \"autor_id\": 5,\n            \"orden_autor\": 1,\n            \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n            \"updated_at\": \"2026-10-15T14:41:24.000000Z\"\n          }\n        },\n        {\n          \"id\": 10,\n          \"nombre\": \"Jed\",\n          \"apellido\": \"Kirlin\",\n          \"fecha_nacimiento\": \"1970-11-29T00:00:00.000000Z\",\n          \"nacionalidad\": \"Bangladesh\",\n          \"biografia\": \"Atque eaque quibusdam ut tenetur quibusdam dolor. Ullam fugit molestiae voluptatem quas aspernatur. Omnis qui quaerat iusto dolores ipsa non.\",\n          \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"pivot\": {\n            \"libro_id\": 8,\n            \"autor_id\": 10,\n            \"orden_autor\": 2,\n            \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n            \"updated_at\": \"2026-10-15T14:41:24.000000Z\"\n          }\n        }\n      ]\n    },\n    {\n      \"id\": 9,\n      \"titulo\": \"Autem nam ipsam laudantium\",\n      \"isbn\": \"9790227838845\",\n      \"anio_publicacion\": 1992,\n      \"numero_paginas\": 661,\n      \"descripcion\": \"Quo sit magni provident et dolor eos. Perferendis quisquam soluta quidem aliquid. Vel nesciunt fugit repellendus amet cum assumenda.\",\n      \"stock_disponible\": 4,\n      \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"deleted_at\": null,\n      \"autores\": [\n        {\n          \"id\": 7,\n          \"nombre\": \"Rozella\",\n          \"apellido\": \"Conroy\",\n          \"fecha_nacimiento\": \"1937-09-06T00:00:00.000000Z\",\n          \"nacionalidad\": \"Chile\",\n          \"biografia\": \"Dolorum magnam delectus tenetur consequatur dolor quibusdam. Et et neque aliquam. Sunt voluptatum consequatur aut. Et sapiente doloribus voluptatem ut non a distinctio.\",\n          \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"pivot\": {\n            \"libro_id\": 9,\n            \"autor_id\": 7,\n            \"orden_autor\": 1,\n            \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n            \"updated_at\": \"2026-10-15T14:41:24.000000Z\"\n          }\n        }\n      ]\n    },\n    {\n      \"id\": 10,\n      \"titulo\": \"Qui vero eum perspiciatis\",\n      \"isbn\": \"9792490178208\",\n      \"anio_publicacion\": 2008,\n      \"numero_paginas\": 796,\n      \"descripcion\": \"Dolorum quaerat rerum eum dolorum quis nesciunt. Animi odit doloremque illum ea ut qui est.\",\n      \"stock_disponible\": 4,\n      \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"deleted_at\": null,\n      \"autores\": [\n        {\n          \"id\": 8,\n          \"nombre\": \"Alden\",\n          \"apellido\": \"Carroll\",\n          \"fecha_nacimiento\": \"1995-10-01T00:00:00.000000Z\",\n          \"nacionalidad\": \"Mali\",\n          \"biografia\": \"Aut non a dolor itaque qui voluptatem ad facere. Repudiandae aut officiis sed et voluptas. Asperiores maxime earum voluptas perferendis est dolores. Voluptatibus pariatur quas provident ipsum accusantium repellat.\",\n          \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"pivot\": {\n            \"libro_id\": 10,\n            \"autor_id\": 8,\n            \"orden_autor\": 1,\n            \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n            \"updated_at\": \"2026-10-15T14:41:24.000000Z\"\n          }\n        }\n      ]\n    }\n  ],\n  \"meta\": {\n    \"current_page\": 1,\n    \"last_page\": 2,\n    \"per_page\": 10,\n    \"total\": 20\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Obtener un libro por id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/libros/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "libros",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Obtener un libro por id",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/libros/1",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "libros",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "host",
+                  "value": "127.0.0.1:8000"
+                },
+                {
+                  "key": "connection",
+                  "value": "close"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "PHP/8.3.33"
+                },
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "date",
+                  "value": "Thu, 15 Oct 2026 15:58:17 GMT"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Libro encontrado\",\n  \"data\": {\n    \"id\": 1,\n    \"titulo\": \"Eos assumenda tempora distinctio\",\n    \"isbn\": \"9787447762746\",\n    \"anio_publicacion\": 2020,\n    \"numero_paginas\": 440,\n    \"descripcion\": \"Corrupti soluta quia modi dicta fugit dignissimos dolorem. Est et delectus sed aut nihil voluptatem nesciunt. Dignissimos quod sequi ducimus magnam voluptatem commodi.\",\n    \"stock_disponible\": 3,\n    \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n    \"updated_at\": \"2026-10-15T15:53:48.000000Z\",\n    \"deleted_at\": null,\n    \"autores\": [\n      {\n        \"id\": 7,\n        \"nombre\": \"Rozella\",\n        \"apellido\": \"Conroy\",\n        \"fecha_nacimiento\": \"1937-09-06T00:00:00.000000Z\",\n        \"nacionalidad\": \"Chile\",\n        \"biografia\": \"Dolorum magnam delectus tenetur consequatur dolor quibusdam. Et et neque aliquam. Sunt voluptatum consequatur aut. Et sapiente doloribus voluptatem ut non a distinctio.\",\n        \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"pivot\": {\n          \"libro_id\": 1,\n          \"autor_id\": 7,\n          \"orden_autor\": 1,\n          \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n          \"updated_at\": \"2026-10-15T14:41:24.000000Z\"\n        }\n      }\n    ]\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Crear libro",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code es 201 Created\", function () {\r\n    pm.response.to.have.status(201);\r\n});\r\n\r\npm.test(\"Libro creado con autores\", function () {\r\n    const json = pm.response.json();\r\n    pm.expect(json.success).to.be.true;\r\n    pm.expect(json.data).to.have.property(\"id\");\r\n    pm.expect(json.data.autores).to.be.an(\"array\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"titulo\": \"Libro postman\",\r\n  \"isbn\": \"9780307474728\",\r\n  \"anio_publicacion\": 2026,\r\n  \"numero_paginas\": 1,\r\n  \"descripcion\": \"Prueba para guardar libro\",\r\n  \"stock_disponible\": 5,\r\n  \"autores\": [1, 2]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/libros",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "libros"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Crear libro",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"titulo\": \"Libro postman\",\r\n  \"isbn\": \"9780307474720\",\r\n  \"anio_publicacion\": 2026,\r\n  \"numero_paginas\": 1,\r\n  \"descripcion\": \"Prueba para guardar libro\",\r\n  \"stock_disponible\": 5,\r\n  \"autores\": [1, 2]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/libros",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "libros"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "host",
+                  "value": "127.0.0.1:8000"
+                },
+                {
+                  "key": "connection",
+                  "value": "close"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "PHP/8.3.33"
+                },
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "date",
+                  "value": "Thu, 15 Oct 2026 16:10:39 GMT"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Libro creado\",\n  \"data\": {\n    \"titulo\": \"Libro postman\",\n    \"isbn\": \"9780307474720\",\n    \"anio_publicacion\": 2026,\n    \"numero_paginas\": 1,\n    \"descripcion\": \"Prueba para guardar libro\",\n    \"stock_disponible\": 5,\n    \"updated_at\": \"2026-10-15T16:10:39.000000Z\",\n    \"created_at\": \"2026-10-15T16:10:39.000000Z\",\n    \"id\": 22,\n    \"autores\": [\n      {\n        \"id\": 1,\n        \"nombre\": \"Zelda\",\n        \"apellido\": \"Nitzsche\",\n        \"fecha_nacimiento\": \"1995-10-05T00:00:00.000000Z\",\n        \"nacionalidad\": \"Bermuda\",\n        \"biografia\": \"Ut quaerat iusto nemo non temporibus impedit dolores quidem. Minus accusantium consequatur aliquid ipsam eum maiores aperiam iste. Non accusantium veritatis quae voluptatem. Voluptatem ullam error earum occaecati perferendis neque.\",\n        \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"pivot\": {\n          \"libro_id\": 22,\n          \"autor_id\": 1,\n          \"orden_autor\": 1,\n          \"created_at\": \"2026-10-15T16:10:39.000000Z\",\n          \"updated_at\": \"2026-10-15T16:10:39.000000Z\"\n        }\n      },\n      {\n        \"id\": 2,\n        \"nombre\": \"Thaddeus\",\n        \"apellido\": \"Schmitt\",\n        \"fecha_nacimiento\": \"1964-10-27T00:00:00.000000Z\",\n        \"nacionalidad\": \"Belgium\",\n        \"biografia\": \"Voluptas cupiditate quia magnam maxime atque excepturi. Enim deleniti doloremque tempore aperiam. Esse ea ad et voluptas omnis. Commodi maxime suscipit nostrum quam.\",\n        \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"pivot\": {\n          \"libro_id\": 22,\n          \"autor_id\": 2,\n          \"orden_autor\": 2,\n          \"created_at\": \"2026-10-15T16:10:39.000000Z\",\n          \"updated_at\": \"2026-10-15T16:10:39.000000Z\"\n        }\n      }\n    ]\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Crear libro - Error validación (Error)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code es 422 Unprocessable Entity\", function () {\r\n    pm.response.to.have.status(422);\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"titulo\": \"\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/libros",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "libros"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Crear libro - Error validación (Error)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"titulo\": \"\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/libros",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "libros"
+                  ]
+                }
+              },
+              "status": "Unprocessable Content",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "host",
+                  "value": "127.0.0.1:8000"
+                },
+                {
+                  "key": "connection",
+                  "value": "close"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "PHP/8.3.33"
+                },
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "date",
+                  "value": "Thu, 15 Oct 2026 16:10:48 GMT"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"message\": \"The titulo field is required. (and 5 more errors)\",\n  \"errors\": {\n    \"titulo\": [\n      \"The titulo field is required.\"\n    ],\n    \"isbn\": [\n      \"The isbn field is required.\"\n    ],\n    \"anio_publicacion\": [\n      \"The anio publicacion field is required.\"\n    ],\n    \"numero_paginas\": [\n      \"The numero paginas field is required.\"\n    ],\n    \"stock_disponible\": [\n      \"The stock disponible field is required.\"\n    ],\n    \"autores\": [\n      \"The autores field is required.\"\n    ]\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Actualizar libro por id",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"titulo\": \"Libro postman biblioteca\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/libros/21",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "libros",
+                "21"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Actualizar libro por id",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"titulo\": \"Libro postman biblioteca\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/libros/22",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "libros",
+                    "22"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "host",
+                  "value": "127.0.0.1:8000"
+                },
+                {
+                  "key": "connection",
+                  "value": "close"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "PHP/8.3.33"
+                },
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "date",
+                  "value": "Thu, 15 Oct 2026 15:48:04 GMT"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Libro actualizado\",\n  \"data\": {\n    \"id\": 21,\n    \"titulo\": \"Libro postman biblioteca\",\n    \"isbn\": \"9780307474728\",\n    \"anio_publicacion\": 2026,\n    \"numero_paginas\": 1,\n    \"descripcion\": \"Prueba para guardar libro\",\n    \"stock_disponible\": 5,\n    \"created_at\": \"2026-10-15T15:42:41.000000Z\",\n    \"updated_at\": \"2026-10-15T15:48:04.000000Z\",\n    \"deleted_at\": null,\n    \"autores\": [\n      {\n        \"id\": 1,\n        \"nombre\": \"Zelda\",\n        \"apellido\": \"Nitzsche\",\n        \"fecha_nacimiento\": \"1995-10-05T00:00:00.000000Z\",\n        \"nacionalidad\": \"Bermuda\",\n        \"biografia\": \"Ut quaerat iusto nemo non temporibus impedit dolores quidem. Minus accusantium consequatur aliquid ipsam eum maiores aperiam iste. Non accusantium veritatis quae voluptatem. Voluptatem ullam error earum occaecati perferendis neque.\",\n        \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"pivot\": {\n          \"libro_id\": 21,\n          \"autor_id\": 1,\n          \"orden_autor\": 1,\n          \"created_at\": \"2026-10-15T15:42:41.000000Z\",\n          \"updated_at\": \"2026-10-15T15:42:41.000000Z\"\n        }\n      },\n      {\n        \"id\": 2,\n        \"nombre\": \"Thaddeus\",\n        \"apellido\": \"Schmitt\",\n        \"fecha_nacimiento\": \"1964-10-27T00:00:00.000000Z\",\n        \"nacionalidad\": \"Belgium\",\n        \"biografia\": \"Voluptas cupiditate quia magnam maxime atque excepturi. Enim deleniti doloremque tempore aperiam. Esse ea ad et voluptas omnis. Commodi maxime suscipit nostrum quam.\",\n        \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"pivot\": {\n          \"libro_id\": 21,\n          \"autor_id\": 2,\n          \"orden_autor\": 2,\n          \"created_at\": \"2026-10-15T15:42:41.000000Z\",\n          \"updated_at\": \"2026-10-15T15:42:41.000000Z\"\n        }\n      }\n    ]\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Eliminar libro por id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/libros/21",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "libros",
+                "21"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Eliminar libro por id",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/libros/21",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "libros",
+                    "21"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "host",
+                  "value": "127.0.0.1:8000"
+                },
+                {
+                  "key": "connection",
+                  "value": "close"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "PHP/8.3.33"
+                },
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "date",
+                  "value": "Thu, 15 Oct 2026 15:48:52 GMT"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Libro eliminado\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Prestamos",
+      "item": [
+        {
+          "name": "Obtener prestamos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/prestamos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "prestamos"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Obtener prestamos",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/prestamos",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "prestamos"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "host",
+                  "value": "127.0.0.1:8000"
+                },
+                {
+                  "key": "connection",
+                  "value": "close"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "PHP/8.3.33"
+                },
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "date",
+                  "value": "Thu, 15 Oct 2026 15:50:02 GMT"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Listado de préstamos\",\n  \"data\": [\n    {\n      \"id\": 11,\n      \"libro_id\": 3,\n      \"usuario_id\": 9,\n      \"fecha_prestamo\": \"2026-10-15T00:00:00.000000Z\",\n      \"fecha_devolucion_estimada\": \"2026-10-30T00:00:00.000000Z\",\n      \"fecha_devolucion_real\": null,\n      \"estado\": \"activo\",\n      \"created_at\": \"2026-10-15T15:27:11.000000Z\",\n      \"updated_at\": \"2026-10-15T15:27:11.000000Z\",\n      \"libro\": {\n        \"id\": 3,\n        \"titulo\": \"Ducimus aut quod consectetur\",\n        \"isbn\": \"9792981913769\",\n        \"anio_publicacion\": 1961,\n        \"numero_paginas\": 222,\n        \"descripcion\": \"Sunt harum quia quo consequatur quas similique beatae. Incidunt aut nam maxime architecto repudiandae. Dolor qui ut qui repudiandae. Eos porro commodi doloribus iure iure fuga. Quis ea consequatur impedit.\",\n        \"stock_disponible\": 6,\n        \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"updated_at\": \"2026-10-15T15:27:11.000000Z\",\n        \"deleted_at\": null\n      },\n      \"usuario\": {\n        \"id\": 9,\n        \"nombre\": \"Prof. Mack Gibson\",\n        \"email\": \"ethelyn11@example.org\",\n        \"telefono\": \"+1.925.332.2814\",\n        \"fecha_registro\": \"2026-06-10T02:29:25.000000Z\",\n        \"estado\": \"activo\",\n        \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"updated_at\": \"2026-10-15T14:41:24.000000Z\"\n      }\n    },\n    {\n      \"id\": 10,\n      \"libro_id\": 11,\n      \"usuario_id\": 3,\n      \"fecha_prestamo\": \"2026-09-09T00:00:00.000000Z\",\n      \"fecha_devolucion_estimada\": \"2026-09-24T00:00:00.000000Z\",\n      \"fecha_devolucion_real\": null,\n      \"estado\": \"vencido\",\n      \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"libro\": {\n        \"id\": 11,\n        \"titulo\": \"Quod qui id quo\",\n        \"isbn\": \"9793768449525\",\n        \"anio_publicacion\": 1989,\n        \"numero_paginas\": 816,\n        \"descripcion\": \"Delectus qui a aut eligendi commodi quibusdam. Rerum quo ut eveniet amet repellendus. Dolores delectus non ab dicta corrupti consectetur. Id magni nisi qui mollitia nostrum optio rerum consequatur.\",\n        \"stock_disponible\": 5,\n        \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"deleted_at\": null\n      },\n      \"usuario\": {\n        \"id\": 3,\n        \"nombre\": \"Tyler Lind DVM\",\n        \"email\": \"shaniya.crooks@example.com\",\n        \"telefono\": \"812.758.1226\",\n        \"fecha_registro\": \"2026-09-20T21:42:19.000000Z\",\n        \"estado\": \"activo\",\n        \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"updated_at\": \"2026-10-15T14:41:24.000000Z\"\n      }\n    },\n    {\n      \"id\": 9,\n      \"libro_id\": 14,\n      \"usuario_id\": 10,\n      \"fecha_prestamo\": \"2026-09-20T00:00:00.000000Z\",\n      \"fecha_devolucion_estimada\": \"2026-10-05T00:00:00.000000Z\",\n      \"fecha_devolucion_real\": null,\n      \"estado\": \"vencido\",\n      \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"libro\": {\n        \"id\": 14,\n        \"titulo\": \"Cupiditate repudiandae accusamus distinctio\",\n        \"isbn\": \"9796848625017\",\n        \"anio_publicacion\": 1968,\n        \"numero_paginas\": 298,\n        \"descripcion\": \"Quibusdam vitae itaque iusto quas porro. Enim reprehenderit velit eligendi quia recusandae dolor. Aut necessitatibus occaecati minima architecto molestiae. Possimus aperiam nobis totam voluptates iure qui et in.\",\n        \"stock_disponible\": 4,\n        \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"deleted_at\": null\n      },\n      \"usuario\": {\n        \"id\": 10,\n        \"nombre\": \"Althea Bailey\",\n        \"email\": \"leuschke.meggie@example.net\",\n        \"telefono\": \"(662) 503-9776\",\n        \"fecha_registro\": \"2026-04-05T18:01:56.000000Z\",\n        \"estado\": \"activo\",\n        \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"updated_at\": \"2026-10-15T14:41:24.000000Z\"\n      }\n    },\n    {\n      \"id\": 8,\n      \"libro_id\": 15,\n      \"usuario_id\": 5,\n      \"fecha_prestamo\": \"2026-10-03T00:00:00.000000Z\",\n      \"fecha_devolucion_estimada\": \"2026-10-18T00:00:00.000000Z\",\n      \"fecha_devolucion_real\": \"2026-10-13T00:00:00.000000Z\",\n      \"estado\": \"devuelto\",\n      \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"libro\": {\n        \"id\": 15,\n        \"titulo\": \"Dolor id vel atque\",\n        \"isbn\": \"9796967101010\",\n        \"anio_publicacion\": 2015,\n        \"numero_paginas\": 354,\n        \"descripcion\": \"Ducimus voluptatibus natus unde ut. Voluptas quia harum necessitatibus nemo nemo nihil magnam. Fugiat exercitationem amet numquam.\",\n        \"stock_disponible\": 4,\n        \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"deleted_at\": null\n      },\n      \"usuario\": {\n        \"id\": 5,\n        \"nombre\": \"Marguerite Kilback\",\n        \"email\": \"shirley10@example.org\",\n        \"telefono\": \"1-530-789-5691\",\n        \"fecha_registro\": \"2026-09-29T16:46:11.000000Z\",\n        \"estado\": \"activo\",\n        \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"updated_at\": \"2026-10-15T14:41:24.000000Z\"\n      }\n    },\n    {\n      \"id\": 7,\n      \"libro_id\": 4,\n      \"usuario_id\": 12,\n      \"fecha_prestamo\": \"2026-10-10T00:00:00.000000Z\",\n      \"fecha_devolucion_estimada\": \"2026-10-25T00:00:00.000000Z\",\n      \"fecha_devolucion_real\": \"2026-10-20T00:00:00.000000Z\",\n      \"estado\": \"devuelto\",\n      \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"libro\": {\n        \"id\": 4,\n        \"titulo\": \"Voluptatem tempore porro voluptatem\",\n        \"isbn\": \"9795811143787\",\n        \"anio_publicacion\": 2009,\n        \"numero_paginas\": 675,\n        \"descripcion\": \"Ea at aut eos qui. Maiores consectetur natus quas quo. Dolorem quo minima consectetur maxime et saepe amet dolorem. Dolorem error inventore harum asperiores ea.\",\n        \"stock_disponible\": 5,\n        \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"deleted_at\": null\n      },\n      \"usuario\": {\n        \"id\": 12,\n        \"nombre\": \"Electa Murazik\",\n        \"email\": \"igrady@example.net\",\n        \"telefono\": \"754.841.0026\",\n        \"fecha_registro\": \"2026-09-19T16:49:55.000000Z\",\n        \"estado\": \"activo\",\n        \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"updated_at\": \"2026-10-15T14:41:24.000000Z\"\n      }\n    },\n    {\n      \"id\": 6,\n      \"libro_id\": 9,\n      \"usuario_id\": 11,\n      \"fecha_prestamo\": \"2026-10-05T00:00:00.000000Z\",\n      \"fecha_devolucion_estimada\": \"2026-10-20T00:00:00.000000Z\",\n      \"fecha_devolucion_real\": null,\n      \"estado\": \"activo\",\n      \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"libro\": {\n        \"id\": 9,\n        \"titulo\": \"Autem nam ipsam laudantium\",\n        \"isbn\": \"9790227838845\",\n        \"anio_publicacion\": 1992,\n        \"numero_paginas\": 661,\n        \"descripcion\": \"Quo sit magni provident et dolor eos. Perferendis quisquam soluta quidem aliquid. Vel nesciunt fugit repellendus amet cum assumenda.\",\n        \"stock_disponible\": 4,\n        \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"deleted_at\": null\n      },\n      \"usuario\": {\n        \"id\": 11,\n        \"nombre\": \"Annalise Boehm\",\n        \"email\": \"camilla78@example.org\",\n        \"telefono\": \"1-816-246-1503\",\n        \"fecha_registro\": \"2026-10-07T17:40:27.000000Z\",\n        \"estado\": \"activo\",\n        \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"updated_at\": \"2026-10-15T14:41:24.000000Z\"\n      }\n    },\n    {\n      \"id\": 5,\n      \"libro_id\": 14,\n      \"usuario_id\": 13,\n      \"fecha_prestamo\": \"2026-10-12T00:00:00.000000Z\",\n      \"fecha_devolucion_estimada\": \"2026-10-27T00:00:00.000000Z\",\n      \"fecha_devolucion_real\": null,\n      \"estado\": \"activo\",\n      \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"libro\": {\n        \"id\": 14,\n        \"titulo\": \"Cupiditate repudiandae accusamus distinctio\",\n        \"isbn\": \"9796848625017\",\n        \"anio_publicacion\": 1968,\n        \"numero_paginas\": 298,\n        \"descripcion\": \"Quibusdam vitae itaque iusto quas porro. Enim reprehenderit velit eligendi quia recusandae dolor. Aut necessitatibus occaecati minima architecto molestiae. Possimus aperiam nobis totam voluptates iure qui et in.\",\n        \"stock_disponible\": 4,\n        \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"deleted_at\": null\n      },\n      \"usuario\": {\n        \"id\": 13,\n        \"nombre\": \"Andreane Fay\",\n        \"email\": \"stokes.hunter@example.org\",\n        \"telefono\": \"(941) 678-7348\",\n        \"fecha_registro\": \"2026-08-29T16:22:24.000000Z\",\n        \"estado\": \"activo\",\n        \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"updated_at\": \"2026-10-15T14:41:24.000000Z\"\n      }\n    },\n    {\n      \"id\": 4,\n      \"libro_id\": 20,\n      \"usuario_id\": 8,\n      \"fecha_prestamo\": \"2026-10-11T00:00:00.000000Z\",\n      \"fecha_devolucion_estimada\": \"2026-10-26T00:00:00.000000Z\",\n      \"fecha_devolucion_real\": null,\n      \"estado\": \"activo\",\n      \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"libro\": {\n        \"id\": 20,\n        \"titulo\": \"Deserunt sunt enim in\",\n        \"isbn\": \"9792778539875\",\n        \"anio_publicacion\": 1988,\n        \"numero_paginas\": 571,\n        \"descripcion\": \"Vel nihil quasi et enim consequatur est dolor. Ut sit ut deleniti perferendis. Quia omnis consequatur dicta quia iure dolores blanditiis ut. Est aut officia architecto et et eveniet et.\",\n        \"stock_disponible\": 0,\n        \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"deleted_at\": null\n      },\n      \"usuario\": {\n        \"id\": 8,\n        \"nombre\": \"Brady Marks\",\n        \"email\": \"hollis.rohan@example.net\",\n        \"telefono\": \"+1-254-539-8374\",\n        \"fecha_registro\": \"2026-05-04T22:46:27.000000Z\",\n        \"estado\": \"activo\",\n        \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"updated_at\": \"2026-10-15T14:41:24.000000Z\"\n      }\n    },\n    {\n      \"id\": 3,\n      \"libro_id\": 18,\n      \"usuario_id\": 7,\n      \"fecha_prestamo\": \"2026-10-14T00:00:00.000000Z\",\n      \"fecha_devolucion_estimada\": \"2026-10-29T00:00:00.000000Z\",\n      \"fecha_devolucion_real\": null,\n      \"estado\": \"activo\",\n      \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"libro\": {\n        \"id\": 18,\n        \"titulo\": \"Iste et tenetur\",\n        \"isbn\": \"9793477326469\",\n        \"anio_publicacion\": 2003,\n        \"numero_paginas\": 431,\n        \"descripcion\": \"Vel autem molestiae consectetur neque. Enim esse dolor minus non omnis pariatur ut ad. Dolor dolorem qui voluptas maxime vero. Velit quae tenetur sint assumenda. Dolorum quas alias sed.\",\n        \"stock_disponible\": 3,\n        \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"deleted_at\": null\n      },\n      \"usuario\": {\n        \"id\": 7,\n        \"nombre\": \"Connor Auer\",\n        \"email\": \"considine.danny@example.com\",\n        \"telefono\": \"1-330-644-9617\",\n        \"fecha_registro\": \"2026-08-22T04:46:35.000000Z\",\n        \"estado\": \"activo\",\n        \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"updated_at\": \"2026-10-15T14:41:24.000000Z\"\n      }\n    },\n    {\n      \"id\": 2,\n      \"libro_id\": 7,\n      \"usuario_id\": 2,\n      \"fecha_prestamo\": \"2026-10-10T00:00:00.000000Z\",\n      \"fecha_devolucion_estimada\": \"2026-10-25T00:00:00.000000Z\",\n      \"fecha_devolucion_real\": null,\n      \"estado\": \"activo\",\n      \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"libro\": {\n        \"id\": 7,\n        \"titulo\": \"Animi error sint\",\n        \"isbn\": \"9793301971575\",\n        \"anio_publicacion\": 2016,\n        \"numero_paginas\": 302,\n        \"descripcion\": \"Incidunt neque non eveniet perferendis quae. Veniam non cumque soluta nihil. Excepturi magnam et et qui.\",\n        \"stock_disponible\": 6,\n        \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"updated_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"deleted_at\": null\n      },\n      \"usuario\": {\n        \"id\": 2,\n        \"nombre\": \"Callie Zieme\",\n        \"email\": \"heidenreich.gerda@example.net\",\n        \"telefono\": \"(678) 275-4568\",\n        \"fecha_registro\": \"2026-06-16T06:00:09.000000Z\",\n        \"estado\": \"activo\",\n        \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n        \"updated_at\": \"2026-10-15T14:41:24.000000Z\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"current_page\": 1,\n    \"last_page\": 2,\n    \"per_page\": 10,\n    \"total\": 11\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Crear nuevo prestamo",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code es 201 Created\", function () {\r\n    pm.response.to.have.status(201);\r\n});\r\n\r\npm.test(\"Prestamo registrado en estado activo\", function () {\r\n    const json = pm.response.json();\r\n    pm.expect(json.success).to.be.true;\r\n    pm.expect(json.data.estado).to.eql(\"activo\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"libro_id\": 1,\r\n  \"usuario_id\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/prestamos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "prestamos"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Crear nuevo prestamo",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"libro_id\": 1,\r\n  \"usuario_id\": 1\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/prestamos",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "prestamos"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "host",
+                  "value": "127.0.0.1:8000"
+                },
+                {
+                  "key": "connection",
+                  "value": "close"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "PHP/8.3.33"
+                },
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "date",
+                  "value": "Thu, 15 Oct 2026 16:04:25 GMT"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Préstamo creado exitosamente\",\n  \"data\": {\n    \"libro_id\": 1,\n    \"usuario_id\": 1,\n    \"fecha_prestamo\": \"2026-10-15T00:00:00.000000Z\",\n    \"fecha_devolucion_estimada\": \"2026-10-30T00:00:00.000000Z\",\n    \"fecha_devolucion_real\": null,\n    \"estado\": \"activo\",\n    \"updated_at\": \"2026-10-15T16:04:25.000000Z\",\n    \"created_at\": \"2026-10-15T16:04:25.000000Z\",\n    \"id\": 13,\n    \"libro\": {\n      \"id\": 1,\n      \"titulo\": \"Eos assumenda tempora distinctio\",\n      \"isbn\": \"9787447762746\",\n      \"anio_publicacion\": 2020,\n      \"numero_paginas\": 440,\n      \"descripcion\": \"Corrupti soluta quia modi dicta fugit dignissimos dolorem. Est et delectus sed aut nihil voluptatem nesciunt. Dignissimos quod sequi ducimus magnam voluptatem commodi.\",\n      \"stock_disponible\": 2,\n      \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"updated_at\": \"2026-10-15T16:04:25.000000Z\",\n      \"deleted_at\": null\n    },\n    \"usuario\": {\n      \"id\": 1,\n      \"nombre\": \"Gonzalo Thiel PhD\",\n      \"email\": \"erdman.nathanael@example.net\",\n      \"telefono\": \"334.618.6843\",\n      \"fecha_registro\": \"2026-06-10T18:58:44.000000Z\",\n      \"estado\": \"activo\",\n      \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"updated_at\": \"2026-10-15T14:41:24.000000Z\"\n    }\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Marcar prestamo como devuelto",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code es 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Prestamo devuelto con fecha real\", function () {\r\n    const json = pm.response.json();\r\n    pm.expect(json.success).to.be.true;\r\n    pm.expect(json.data.estado).to.eql(\"devuelto\");\r\n    pm.expect(json.data.fecha_devolucion_real).to.not.be.null;\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/prestamos/11/devolver",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "prestamos",
+                "11",
+                "devolver"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Marcar prestamo como devuelto",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/prestamos/11/devolver",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "prestamos",
+                    "11",
+                    "devolver"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "host",
+                  "value": "127.0.0.1:8000"
+                },
+                {
+                  "key": "connection",
+                  "value": "close"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "PHP/8.3.33"
+                },
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "date",
+                  "value": "Thu, 15 Oct 2026 16:05:02 GMT"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Préstamo marcado como devuelto exitosamente\",\n  \"data\": {\n    \"id\": 11,\n    \"libro_id\": 3,\n    \"usuario_id\": 9,\n    \"fecha_prestamo\": \"2026-10-15T00:00:00.000000Z\",\n    \"fecha_devolucion_estimada\": \"2026-10-30T00:00:00.000000Z\",\n    \"fecha_devolucion_real\": \"2026-10-15T00:00:00.000000Z\",\n    \"estado\": \"devuelto\",\n    \"created_at\": \"2026-10-15T15:27:11.000000Z\",\n    \"updated_at\": \"2026-10-15T16:05:02.000000Z\",\n    \"libro\": {\n      \"id\": 3,\n      \"titulo\": \"Ducimus aut quod consectetur\",\n      \"isbn\": \"9792981913769\",\n      \"anio_publicacion\": 1961,\n      \"numero_paginas\": 222,\n      \"descripcion\": \"Sunt harum quia quo consequatur quas similique beatae. Incidunt aut nam maxime architecto repudiandae. Dolor qui ut qui repudiandae. Eos porro commodi doloribus iure iure fuga. Quis ea consequatur impedit.\",\n      \"stock_disponible\": 7,\n      \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"updated_at\": \"2026-10-15T16:05:02.000000Z\",\n      \"deleted_at\": null\n    },\n    \"usuario\": {\n      \"id\": 9,\n      \"nombre\": \"Prof. Mack Gibson\",\n      \"email\": \"ethelyn11@example.org\",\n      \"telefono\": \"+1.925.332.2814\",\n      \"fecha_registro\": \"2026-06-10T02:29:25.000000Z\",\n      \"estado\": \"activo\",\n      \"created_at\": \"2026-10-15T14:41:24.000000Z\",\n      \"updated_at\": \"2026-10-15T14:41:24.000000Z\"\n    }\n  }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code es 200 OK\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Token generado y almacenado correctamente\", function () {\r\n    const response = pm.response.json();\r\n    \r\n    pm.expect(response.success).to.be.true;\r\n    pm.expect(response.data).to.have.property(\"token\");\r\n    pm.expect(response.data.token).to.be.a(\"string\");\r\n\r\n    pm.collectionVariables.set(\"token\", response.data.token);\r\n    console.log(\"Token guardado en la colección:\", response.data.token);\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"admin@biblioteca.test\",\r\n  \"password\": \"password\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Login",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"email\": \"admin@biblioteca.test\",\r\n  \"password\": \"password\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/login",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "host",
+                  "value": "127.0.0.1:8000"
+                },
+                {
+                  "key": "connection",
+                  "value": "close"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "PHP/8.3.33"
+                },
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "date",
+                  "value": "Thu, 15 Oct 2026 16:03:06 GMT"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Login exitoso\",\n  \"data\": {\n    \"token\": \"7|eas43Hcu4c27zqv3t0G078kM626QwmYzGrIN8oLd665cc352\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login - Credenciales inválidas (Error)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code es 401 Unauthorized\", function () {\r\n    pm.response.to.have.status(401);\r\n});\r\n\r\npm.test(\"Mensaje de credenciales inválidas\", function () {\r\n    const json = pm.response.json();\r\n    pm.expect(json.success).to.be.false;\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"admin@biblioteca.test\",\r\n  \"password\": \"password_incorrecta\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/logout",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "logout"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Logout",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/logout",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "logout"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "host",
+                  "value": "127.0.0.1:8000"
+                },
+                {
+                  "key": "connection",
+                  "value": "close"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "PHP/8.3.33"
+                },
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "date",
+                  "value": "Thu, 15 Oct 2026 15:55:03 GMT"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Sesión cerrada\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": ""
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ]
+}
