@@ -1,25 +1,36 @@
 # Sistema de Gestión de Biblioteca - API REST & Frontend
 
-Prueba técnica para el cargo de Desarrollador Backend / Fullstack. La aplicación consiste en un sistema de gestión de biblioteca que permite administrar libros, autores y préstamos mediante una API REST protegida con Laravel Sanctum y una interfaz web interactiva construida con Blade y JavaScript vanilla.
+Sistema integral de gestión de libros, autores y préstamos desarrollado con **Laravel**, **MySQL**, **JavaScript (Fetch API)** y **Blade**, conforme a los requerimientos de la prueba técnica.
 
 ---
 
-## 🛠 Requisitos Previos
+## 📁 Estructura de Entregables del Repositorio
 
-Asegúrate de contar con el siguiente entorno instalado en tu máquina:
+El repositorio incluye todos los componentes y entregables solicitados organizados de la siguiente manera:
 
-- **PHP**: >= 8.2
-- **Composer**: >= 2.x
-- **Gestor de Base de Datos**: MySQL (>= 8.0) o PostgreSQL (>= 14.x)
-- **Node.js & NPM**: (Opcional, las vistas usan CSS/JS vanilla sin build steps obligatorios)
-- **Git**
-- **Postman**: Para la importación y ejecución de la suite de pruebas automatizadas
+* **Documento de Preguntas Teóricas:** `Preguntas teoricas.pdf`
+* **Colección de Postman con Tests Automatizados:** `biblioteca.postman_collection.json` (incluye variables de entorno, autenticación Bearer token a nivel de colección, pruebas `pm.test`, casos de éxito, validaciones de error y ejemplos de respuesta documentados).
+* **Base de Datos y Diagrama:** Carpeta `'modelo BD y script'` (contiene el Diagrama Entidad-Relación y los scripts SQL de creación con constraints).
+* **Frontend Web Interactivo:** `resources/views/biblioteca.blade.php` (login interactivo, gestión de token en el cliente, catálogo reactivo con búsqueda en tiempo real, formulario de préstamo y dashboard de estadísticas).
+* **Lógica de Negocio y Reportería:** Comandos personalizados en `app/Console/Commands/`.
 
 ---
 
-## 🚀 Instalación y Puesta en Marcha
+## 🛠️ Requisitos Previos
 
-Sigue estos pasos para clonar, configurar e iniciar el proyecto localmente:
+Asegúrate de contar con el siguiente entorno configurado:
+
+* **PHP**: >= 8.2 (con extensiones activas: `pdo_mysql`, `mbstring`, `openssl`, `bcmath`)
+* **Composer**: >= 2.x
+* **Motor de Base de Datos**: MySQL (>= 8.0)
+* **Git**
+* **Postman**: Para la ejecución y verificación de los endpoints de la API
+
+---
+
+## 🚀 Guía de Instalación y Puesta en Marcha
+
+Sigue estos pasos en tu consola para levantar el proyecto localmente:
 
 ### 1. Clonar el repositorio
 ```bash
@@ -27,27 +38,25 @@ git clone <URL_DEL_REPOSITORIO>
 cd biblioteca
 ```
 
-### 2. Instalar dependencias de PHP
+### 2. Instalar dependencias del proyecto
 ```bash
 composer install
 ```
 
-### 3. Configuración del entorno (`.env`)
-Copia el archivo de ejemplo para crear tu entorno local:
-
+### 3. Configuración del archivo de entorno (`.env`)
+Genera el archivo local a partir del template de ejemplo:
 ```bash
 cp .env.example .env
 ```
 
-Genera la clave de cifrado de la aplicación:
+Genera la clave de cifrado de Laravel:
 ```bash
 php artisan key:generate
 ```
 
-### 4. Configurar la Base de Datos
-Abre el archivo `.env` y ajusta las credenciales de conexión.
+### 4. Configurar la Conexión a la Base de Datos
+Crea una base de datos vacía llamada `biblioteca` en tu servidor MySQL y verifica que el archivo `.env` contenga los datos de conexión apropiados:
 
-#### Configuración para MySQL:
 ```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -57,116 +66,93 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-#### Configuración para PostgreSQL (Alternativa según enunciado):
-```env
-DB_CONNECTION=pgsql
-DB_HOST=127.0.0.1
-DB_PORT=5432
-DB_DATABASE=biblioteca
-DB_USERNAME=postgres
-DB_PASSWORD=tu_password
-```
-
-> **Nota:** Crea previamente la base de datos `biblioteca` en tu motor de base de datos antes de continuar.
-
-### 5. Ejecutar Migraciones y Seeders
-Este comando creará todas las tablas requeridas (autores, libros, usuarios, préstamos, tabla pivot `autor_libro` con `orden_autor`, y tokens de Sanctum) y poblará la base de datos con los datos de prueba exigidos (10 autores, 20 libros, 15 usuarios y 10 préstamos con estados variados):
+### 5. Ejecutar Migraciones y Poblado de Datos (Seeders)
+Ejecuta el siguiente comando para crear las tablas (incluyendo la tabla pivot `autor_libro` con `orden_autor`, `soft deletes` y tokens de Sanctum) y cargar los datos de prueba requeridos (10 autores, 20 libros, 15 usuarios y 10 préstamos):
 
 ```bash
 php artisan migrate:fresh --seed
 ```
 
-### 6. Iniciar el Servidor de Desarrollo
+#### Credenciales de Acceso por Defecto:
+* **Email:** `admin@biblioteca.test`
+* **Password:** `password`
+
+### 6. Iniciar el Servidor Local
 ```bash
 php artisan serve
 ```
 
-La aplicación quedará disponible en:
+La aplicación web y la API quedarán disponibles en:
 ```text
 http://127.0.0.1:8000
 ```
 
 ---
 
-## 🔐 Credenciales de Prueba por Defecto
+## 💻 Interfaz Web (Frontend con Blade + Vanilla JS)
 
-Para autenticación tanto en Postman como en el panel web:
+Ingresa desde tu navegador a: `http://127.0.0.1:8000/`
 
-| Campo | Valor |
-|---|---|
-| **Email** | `admin@biblioteca.test` |
-| **Password** | `password` |
-
----
-
-## 💻 Acceso al Frontend (Blade + JS)
-
-Ingresa desde tu navegador a:
-```text
-http://127.0.0.1:8000/
-```
-
-**Funcionalidades de la interfaz:**
-1. **Inicio de sesión interactivo:** Consume `POST /api/login` y almacena el Bearer Token en `localStorage`.
-2. **Dashboard de Estadísticas:** Indicadores de total de libros, stock disponible, préstamos activos y usuarios.
-3. **Búsqueda en tiempo real:** Catálogo de libros con filtro reactivo por título (debounce de 300 ms).
-4. **Formulario de Préstamos:** Selección de usuario y libro disponible, validando reglas de negocio con retroalimentación visual de errores y éxitos.
-5. **Cierre de sesión:** Endpoint `POST /api/logout` e invalidación del token local.
+**Flujo de la interfaz:**
+1. **Autenticación en el Cliente:** Si no existe una sesión previa, se presentará el formulario de inicio de sesión. Al presionar *Ingresar*, se consume `POST /api/login` y se guarda automáticamente el token en `localStorage`.
+2. **Dashboard de Estadísticas:** Muestra en tiempo real los contadores de libros totales, stock disponible, préstamos activos y usuarios.
+3. **Búsqueda en Tiempo Real:** Filtro reactivo en el catálogo de libros por título (optimizado con *debounce* de 300 ms).
+4. **Formulario de Préstamos:** Selección de usuario y libro disponible con validación del lado del cliente y consumo asíncrono (AJAX) del endpoint `POST /api/prestamos`.
+5. **Cierre de Sesión:** Botón que ejecuta `POST /api/logout`, revoca el token en el backend y limpia el almacenamiento del navegador.
 
 ---
 
-## ⚙️ Comandos Artisan Personalizados
+## ⚙️ Comandos de Consola Artisan
 
-El sistema incluye comandos de consola para automatización y reportería:
+Se implementaron comandos para automatizar la lógica de negocio y generar reportes:
 
 ### 1. Marcar Préstamos Vencidos Automáticamente
-Evalúa los préstamos en estado `activo` cuya fecha estimada de devolución haya expirado (> 15 días) y los actualiza al estado `vencido`:
+Evalúa los préstamos activos con fecha estimada de devolución superada (> 15 días) y los actualiza al estado `vencido`:
 ```bash
 php artisan biblioteca:marcar-vencidos
 ```
 
-### 2. Generar Reporte Consolidado de Biblioteca
-Genera tablas formateadas en terminal con:
-- Top 5 libros más prestados
-- Usuarios con préstamos actualmente vencidos y libros adeudados
-- Libros sin existencias en stock (`stock_disponible <= 0`)
+### 2. Generar Reporte de Biblioteca
+Muestra tablas en consola con los tres indicadores solicitados:
+* Top 5 libros más prestados
+* Usuarios con préstamos actualmente vencidos y libros adeudados
+* Libros sin existencias en stock (`stock_disponible <= 0`)
 ```bash
 php artisan biblioteca:reporte
 ```
 
 ---
 
-## 📮 Colección de Postman y Pruebas Automatizadas
+## 📮 Pruebas Automatizadas con Postman
 
-El repositorio incluye el archivo exportado con la colección completa: `biblioteca.postman_collection.json`.
+El archivo `biblioteca.postman_collection.json` se encuentra en la raíz del proyecto.
 
-### Cómo importar y probar:
+### Pasos para ejecutar:
 1. Abre **Postman** y haz clic en **Import**.
-2. Selecciona el archivo `biblioteca.postman_collection.json`.
-3. Configura la variable de colección `base_url` con:
+2. Selecciona `biblioteca.postman_collection.json`.
+3. Verifica que la variable de colección `base_url` apunte a:
    ```text
    http://127.0.0.1:8000/api
    ```
-   *(O `http://127.0.0.1:8000` dependiendo del prefijo de tus endpoints).*
-4. Ejecuta la petición **Auth > Login**: el script de prueba guardará automáticamente el token en `{{token}}` para todas las peticiones restantes de la colección.
-5. Haz clic derecho sobre la colección **biblioteca** > **Run collection** > **Run biblioteca** para correr toda la suite de tests automatizados (`pm.test`).
+   *(o `http://127.0.0.1:8000` si tus rutas no llevan prefijo adicional).*
+4. Abre la carpeta **Auth** y ejecuta **Login**: el script de prueba validará el estado `200 OK` y fijará automáticamente el token en la variable `{{token}}` de la colección.
+5. Ejecuta la colección completa haciendo clic en los tres puntos `...` de la colección > **Run collection** > **Run biblioteca**.
 
 ---
 
-## 📋 Resumen de Endpoints de la API
+## 📋 Resumen de Endpoints de la API REST
 
-### Autenticación (Pública / Protegida)
-- `POST /api/login` - Inicio de sesión y generación de token Sanctum.
-- `POST /api/logout` - Revocación del token actual.
+Todos los endpoints esperan y devuelven respuestas con encabezado `Accept: application/json`.
 
-### Libros (`auth:sanctum`)
-- `GET /api/libros` - Listado paginado con filtros (`titulo`, `autor`, `anio`, `per_page`).
-- `GET /api/libros/{id}` - Detalle de un libro específico con sus autores ordenados.
-- `POST /api/libros` - Registro de libro y asociación en tabla pivot `autor_libro`.
-- `PUT /api/libros/{id}` - Actualización de datos de libro y sincronización de autores.
-- `DELETE /api/libros/{id}` - Eliminación lógica (*Soft Delete*).
-
-### Préstamos (`auth:sanctum`)
-- `GET /api/prestamos` - Listado de préstamos con relaciones `libro` y `usuario`.
-- `POST /api/prestamos` - Registro de nuevo préstamo (valida stock y límite de 3 préstamos por usuario).
-- `PUT /api/prestamos/{id}/devolver` - Marca el préstamo como `devuelto`, registra fecha real y repone stock.
+| Método | Endpoint | Descripción | Autenticación |
+| :--- | :--- | :--- | :--- |
+| **POST** | `/api/login` | Inicia sesión y genera token Sanctum | Pública |
+| **POST** | `/api/logout` | Invalida el token del usuario actual | Bearer Token |
+| **GET** | `/api/libros` | Listado con paginación y filtros (`titulo`, `autor`, `anio`) | Bearer Token |
+| **GET** | `/api/libros/{id}` | Detalle de libro con autores ordenados | Bearer Token |
+| **POST** | `/api/libros` | Crear libro y vincular autores en pivot | Bearer Token |
+| **PUT** | `/api/libros/{id}` | Actualizar datos del libro | Bearer Token |
+| **DELETE**| `/api/libros/{id}` | Eliminación lógica (*Soft Delete*) | Bearer Token |
+| **GET** | `/api/prestamos` | Listado de préstamos con libro y usuario | Bearer Token |
+| **POST** | `/api/prestamos` | Registrar préstamo (valida stock y límite de 3) | Bearer Token |
+| **PUT** | `/api/prestamos/{id}/devolver`| Marcar como devuelto y reponer stock | Bearer Token |
